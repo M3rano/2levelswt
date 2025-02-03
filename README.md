@@ -13,8 +13,9 @@ If `signal` is your 1D input data and `desired_scale` is your chosen decompositi
 `best_rec_bfom` is the reconstructed and denoised signal.
 
 # Dependencies
-pywt
-numpy 
-scipy
+- pywt
+- numpy 
+- scipy
+- 
 # Acknowledgement
 If this code has been useful in your research, please cite us using one of the following links...
