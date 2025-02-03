@@ -16,6 +16,6 @@ If `signal` is your 1D input data and `desired_scale` is your chosen decompositi
 - pywt
 - numpy 
 - scipy
-- 
+  
 # Acknowledgement
 If this code has been useful in your research, please cite us using one of the following links...
