@@ -17,6 +17,75 @@ Signatures are found by:
     lines = find_lines(best_rec)
 
 `lines` is a list with indices of all found signatures.
+## Basic test
+Use the following function to create a simple emission spectrum:
+
+    def emission_spectrum(wavelength, lines):
+        """
+        Create artificial 1D emission spectrum
+
+        Parameters
+        ----------
+        wavelength : array_like
+            Data points for x-axis
+        lines : array_like
+            List of tuples.
+            Each tuple contains location, width and amplitude of a line
+
+        Returns
+        -------
+        spectrum : array_like
+            1D spectrum
+
+        """
+        spectrum = np.zeros_like(wavelength)
+        for line in lines:
+            center, amplitude, width = line
+            spectrum += amplitude * \
+                np.exp(-0.5 * ((wavelength - center) / width) ** 2)
+        return spectrum
+
+
+    wavelength_min = 0  # minimal wavelength
+    wavelength_max = 1000  # maximum wavelength
+    num_points = 25000  # number of points
+
+    # parameters for spectral lines (center of wavelength, amplitude, width)
+    lines = [
+        (300, 1.0, 2),
+        (400, 0.5, 1),
+        (800, 0.8, 4),
+        (150, 0.7, 0.5),
+        (550, 0.6, 2),
+        (557, 0.35, 2),
+        (700, 0.1, 0.5),
+        (50, 0.1, 1),
+        (250, 0.3, 0.5)
+        # add more tuples for more lines
+    ]
+
+    # create wavelength range
+    wavelengths = np.linspace(wavelength_min, wavelength_max, num_points)
+
+    # calculate emission spectrum
+    spectrum = emission_spectrum(wavelengths, lines)
+
+Add noise to the spectrum and define signal with:
+
+    # add noise
+    spectrum_with_noise = add_noise(spectrum)
+
+    # define x and signal
+    x = wavelengths
+    og_signal = spectrum
+    signal = spectrum_with_noise
+
+
+Since we have prior knowledge of the underlying signal, mean squared error is used instead of bFoM.
+For that, see docstring of the function find_best_wavelet().
+
+
+
 
 # Dependencies
 - pywt
