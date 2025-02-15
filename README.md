@@ -17,6 +17,53 @@ Signatures are found by:
     lines = find_lines(best_rec)
 
 `lines` is a list with indices of all found signatures.
+
+### Notes:
+
+Lines from before and after a transform can not be directly compared i.e. when looking for false positives.
+The transform can shift peak indices slightly. Therefore a range of indices needs to be set as tolerance. This can be done using the following code:
+
+    def has_close_number(num, other_list, distance):
+        """
+        Check if index of signature is close to other indices.
+
+        Parameters
+        ----------
+        num : float
+            Index in x of signature 
+        other_list : list
+            Indices of signatures before transform
+        distance : int
+            Allowed distance between indices of a signature.
+
+        Returns
+        -------
+        boolean
+            True if there is a close index. False if not.
+
+        Notes
+        ----
+        Index of a signature can shift through the transformation.
+        Using this function we make sure that signatures from after transformation are paired correctly with the signatures from before. 
+
+        """
+        return any(abs(num - x) <= distance for x in other_list)
+        
+        
+    tolerance = 50
+    
+    false_positives = [
+    x for x in lines_after
+    if (x not in lines_before) and not has_close_number(x, lines_before, tolerance)
+    ]
+
+`lines_before` denotes the lines found before transforming.\
+`lines_after` denotes the lines found after transforming.\
+An appropriate `tolerance` depends heavily on the size of the data. \
+`false_positives` is a list containing all the indices from `lines_after` that do not appear in `lines_before` with regard for the set `tolerance`.
+
+    
+
 ## Basic test
 Use the following function to create a simple emission spectrum:
 
