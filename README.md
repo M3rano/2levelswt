@@ -139,4 +139,4 @@ For that, see docstring of the function find_best_wavelet().
 - numpy 
 - scipy
 
-`$\alpha$`
+
