@@ -21,7 +21,7 @@ Signatures are found by:
 ### Notes:
 
 Lines from before and after a transform can not be directly compared i.e. when looking for false positives.
-The transform can shift peak indices slightly. Therefore a range of indices needs to be set as tolerance. This can be done using the following code:
+Sometimes the transform will shift peak indices slightly. Therefore a range of indices needs to be set as tolerance. This can be done using the following code:
 
     def has_close_number(num, other_list, distance):
         """
@@ -138,5 +138,4 @@ For that, see docstring of the function find_best_wavelet().
 - pywt
 - numpy 
 - scipy
-
 
