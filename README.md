@@ -139,3 +139,10 @@ For that, see docstring of the function find_best_wavelet().
 - numpy 
 - scipy
 
+# Citation
+If you use this code, we kindly request that you acknowledge our work. Please include at least the following citation:
+
+(1) Eqbal, Mehran. Application of the Wavelet Transform Technique to the Analysis of Weak Signatures in the Titan Spectra Obtained with Herschel/PACS. 2025, University of Göttingen, Bachelor's thesis.
+
+(2) Mehran Eqbal & Miriam Rengel.
+  
